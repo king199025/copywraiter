@@ -9,6 +9,7 @@
  * file that was distributed with this source code.
  */
 
+use common\classes\UserFunction;
 use yii\helpers\Html;
 use yii\widgets\Menu;
 
@@ -28,16 +29,24 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
             <?= $user->username ?>
         </h3>
     </div>
+    <?php
+        $menuatems[] = ['label' => Yii::t('user', 'Profile'), 'url' => ['/user/settings/profile']];
+        $role = UserFunction::getRole_user();
+        if (!$role['moderator']){
+            $menuatems[] = ['label' => Yii::t('user', 'Account'), 'url' => ['/user/settings/account']];
+        }
+
+
+        $menuatems[] = ['label' => Yii::t('user', 'Networks'), 'url' => ['/user/settings/networks'], 'visible' => $networksVisible];
+    ?>
+
+
     <div class="panel-body">
         <?= Menu::widget([
             'options' => [
                 'class' => 'nav nav-pills nav-stacked',
             ],
-            'items' => [
-                ['label' => Yii::t('user', 'Profile'), 'url' => ['/user/settings/profile']],
-                ['label' => Yii::t('user', 'Account'), 'url' => ['/user/settings/account']],
-                ['label' => Yii::t('user', 'Networks'), 'url' => ['/user/settings/networks'], 'visible' => $networksVisible],
-            ],
+            'items' => $menuatems ,
         ]) ?>
     </div>
 </div>

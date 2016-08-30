@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="tasks-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
 
     <p>
         <?= Html::a(Yii::t('tasks', 'Create Tasks'), ['create'], ['class' => 'btn btn-success']) ?>
@@ -29,7 +29,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'link',
             'koment_moder:ntext',
             'vihod_text:ntext',
-            // 'status',
+            [
+                'attribute'=>'status',
+                'format' => 'text',
+                'content'=>function($model){
+                    $status = \common\models\db\StatusTasks::find()->where(['id' => $model->status])->one();
+
+                    return Yii::t('status', $status->title);
+                }
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

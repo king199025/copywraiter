@@ -1,6 +1,7 @@
 <?php
 namespace common\models;
 
+use common\models\db\Profile;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
@@ -185,4 +186,6 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+
+
 }

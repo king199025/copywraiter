@@ -50,6 +50,12 @@ class m160811_130515_create_status_tasks_table extends Migration
                 'title' => 'STATUS_TASK_DONE'
             ]
         );
+        $this->insert('status_tasks',
+            [
+                'id' => 6,
+                'title' => 'STATUS_TASK_REWORK'
+            ]
+        );
     }
 
     /**

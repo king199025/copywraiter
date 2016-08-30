@@ -15,6 +15,8 @@ use Yii;
 
 class UserDec extends User
 {
+
+
     /**
      * Attempts user confirmation.
      *

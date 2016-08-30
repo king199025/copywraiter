@@ -4,6 +4,7 @@ namespace frontend\modules\tasks\controllers;
 
 use common\classes\Debug;
 use common\models\db\StatusTasks;
+use common\models\User;
 use Yii;
 use frontend\modules\tasks\models\Tasks;
 use frontend\modules\tasks\models\TasksSearch;
@@ -78,6 +79,7 @@ class TasksController extends Controller
                 $statArr[$value->id] =  Yii::t('status', $value->title);
             }
 
+            //Debug::prn($user);
 
             return $this->render('create', [
                 'model' => $model,
@@ -133,4 +135,14 @@ class TasksController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    public function actionSelect_user()
+    {
+        $user = User::find()
+            ->leftJoin('auth_assignment','`auth_assignment`.`user_id` = `user`.`id`')
+            ->where(['`auth_assignment`.`item_name`' => 'copywriter'])
+            ->all();
+        return $this->renderAjax('user-list',['user' => $user,]);
+    }
+
 }

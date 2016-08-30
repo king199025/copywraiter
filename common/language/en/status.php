@@ -5,5 +5,5 @@ return[
     'STATUS_TASK_MODERATION' => 'Moderation',
     'STATUS_TASK_BEN_REJECTED' => 'Ben rejected',
     'STATUS_TASK_DONE' => 'Done',
-
+    'STATUS_TASK_REWORK' => 'Rework',
 ];

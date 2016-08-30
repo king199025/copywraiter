@@ -5,5 +5,6 @@ return[
     'STATUS_TASK_MODERATION' => 'На модерации',
     'STATUS_TASK_BEN_REJECTED' => 'Отклонено',
     'STATUS_TASK_DONE' => 'Готово',
+    'STATUS_TASK_REWORK' => 'На доработку',
 
 ];

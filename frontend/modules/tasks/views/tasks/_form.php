@@ -22,6 +22,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'status')->dropDownList($status) ?>
 
+
+
+    <a class="btn btn-primary selectUser">Выбрать исполнителя</a>
+    <?= $form->field($model, 'user_id')->hiddenInput()->label(false); ?>
+
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('tasks', 'Create') : Yii::t('tasks', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>

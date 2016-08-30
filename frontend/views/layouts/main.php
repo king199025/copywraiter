@@ -30,15 +30,22 @@ AppAsset::register($this);
 <div class="wrap">
     <?php echo \frontend\widgets\ShowLang::widget(); ?>
     <?php
-    NavBar::begin();
+    NavBar::begin([
+        'options' => [
+            'class' => 'navbar-inverse navbar-fixed-top',
+        ],
+    ]);
     $menuItems = [
-        ['label' => Yii::t('menu','HEADER_MENU_HOME'), 'url' => ['/site/index']],
+        ['label' => Yii::t('menu','HEADER_MENU_HOME'), 'url' => ['/']],
+
         /*['label' => 'About', 'url' => ['/site/about']],
         ['label' => 'Contact', 'url' => ['/site/contact']],*/
+
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => Yii::t('menu','HEADER_MENU_LOGIN'), 'url' => ['/login']];
     } else {
+        $menuItems[] = ['label' => Yii::t('menu', 'MENU_PROFILE'), 'url' => ['/profile']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
@@ -47,6 +54,7 @@ AppAsset::register($this);
             )
             . Html::endForm()
             . '</li>';
+
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
@@ -57,7 +65,7 @@ AppAsset::register($this);
     <?php
         if (!Yii::$app->user->isGuest) {
             $role = UserFunction::getRole_user();
-           // Debug::prn($role);
+            //Debug::prn($role);
             if ($role['admin']) {
                 $viewsMenu = '_admin-menu';
             }
@@ -67,7 +75,7 @@ AppAsset::register($this);
             if ($role['copywriter']) {
                 $viewsMenu = '_copywriter-menu';
             }
-            echo $this->render($viewsMenu);
+           echo $this->render($viewsMenu);
         }
     ?>
     <div class="container">

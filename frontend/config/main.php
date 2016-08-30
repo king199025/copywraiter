@@ -57,7 +57,17 @@ return [
                 '' => 'mainpage/default',
                 '<controller:\w+>/<action:\w+>/*'=>'<controller>/<action>',
                 'login' => '/user/security/login',
+                'profile' => '/user/settings/account',
+                'tasks' => 'tasks/tasks',
+                'user-tasks' => 'task_copywraiter/default',
+                'user-tasks/run/<id:\d+>' => 'task_copywraiter/default/run_tasks',
+                'moder-task' => 'task_moderator/default',
+                'moder-task/check/<id:\d+>' => 'task_moderator/default/check_tasks',
 
+                'free-tasks' => 'task_copywraiter/default/free_tasks',
+
+                'users' => 'users/default',
+                'stats-copy' => 'stats_copy/default',
             ]
         ],
         'mailer' => [
@@ -72,6 +82,18 @@ return [
         ],
         'tasks' => [
             'class' => 'frontend\modules\tasks\Tasks',
+        ],
+        'task_copywraiter' => [
+            'class' => 'frontend\modules\task_copywraiter\TaskCopywraiter',
+        ],
+        'task_moderator' => [
+            'class' => 'frontend\modules\task_moderator\TaskModerator',
+        ],
+        'users' => [
+            'class' => 'frontend\modules\users\Users',
+        ],
+        'stats_copy' => [
+            'class' => 'frontend\modules\stats_copy\StatsCopy',
         ],
     ],
 

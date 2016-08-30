@@ -9,6 +9,7 @@
  * file that was distributed with this source code.
  */
 
+use common\classes\UserFunction;
 use yii\helpers\Html;
 
 /**
@@ -45,23 +46,30 @@ $this->params['breadcrumbs'][] = $this->title;
                     'validateOnBlur'         => false,
                 ]); ?>
 
-                <?= $form->field($model, 'name') ?>
+               <!-- <?/*= $form->field($model, 'name') */?>
 
-                <?= $form->field($model, 'public_email') ?>
+                <?/*= $form->field($model, 'public_email') */?>
 
-                <?= $form->field($model, 'website') ?>
+                <?/*= $form->field($model, 'website') */?>
 
-                <?= $form->field($model, 'location') ?>
+                <?/*= $form->field($model, 'location') */?>
 
-                <?= $form->field($model, 'gravatar_email')->hint(\yii\helpers\Html::a(Yii::t('user', 'Change your avatar at Gravatar.com'), 'http://gravatar.com')) ?>
+                --><?/*= $form->field($model, 'gravatar_email')->hint(\yii\helpers\Html::a(Yii::t('user', 'Change your avatar at Gravatar.com'), 'http://gravatar.com')) */?>
 
-                <?= $form->field($model, 'bio')->textarea() ?>
+                <?= $form->field($model, 'limit')->textInput(['readonly' => true]) ?>
+                <?= $form->field($model, 'penalti')->textInput(['readonly' => true]) ?>
 
-                <div class="form-group">
-                    <div class="col-lg-offset-3 col-lg-9">
-                        <?= \yii\helpers\Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-block btn-success']) ?><br>
+                <?php
+                $role = UserFunction::getRole_user();
+                if (!$role['copywriter']): ?>
+                    <?= $form->field($model, 'bio')->textarea()->label(Yii::t('users','Comment')) ?>
+                    <div class="form-group">
+                        <div class="col-lg-offset-3 col-lg-9">
+                            <?= \yii\helpers\Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-block btn-success']) ?><br>
+                        </div>
                     </div>
-                </div>
+                <?php endif;?>
+
 
                 <?php \yii\widgets\ActiveForm::end(); ?>
             </div>
